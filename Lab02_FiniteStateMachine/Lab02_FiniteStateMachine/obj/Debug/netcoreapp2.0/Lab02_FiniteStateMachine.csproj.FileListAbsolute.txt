@@ -1,0 +1,11 @@
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\bin\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.deps.json
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\bin\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.runtimeconfig.json
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\bin\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.runtimeconfig.dev.json
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\bin\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.dll
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\bin\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.pdb
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\obj\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.csprojResolveAssemblyReference.cache
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\obj\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.csproj.CoreCompileInputs.cache
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\obj\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.AssemblyInfoInputs.cache
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\obj\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.AssemblyInfo.cs
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\obj\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.dll
+C:\TwelthQuartCode\Lab02_FiniteStateMachine\Lab02_FiniteStateMachine\obj\Debug\netcoreapp2.0\Lab02_FiniteStateMachine.pdb
