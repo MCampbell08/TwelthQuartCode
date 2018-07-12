@@ -35,6 +35,7 @@ namespace Lab04_NonDeterAndFiniteStateMachine
         private string[] inputPossibilities = { "Hi", "Hello", "Howdy", "How are you?", "How are you doing?", "How do you do?", "Aloha", "Ahoy mate", "Thanks", "Thank you" };
 
         private List<string> possibilitiesChecked = new List<string>();
+        private MachineState currState = MachineState.BeginningState;
 
         public void Run()
         {
@@ -50,34 +51,6 @@ namespace Lab04_NonDeterAndFiniteStateMachine
 
         private bool StatePassed(string input)
         {
-            bool done = false;
-            int counter = -1;
-            char currChar = '\0';
-
-            while (!done)
-            {
-                switch (currChar)
-                {
-                    case '\0':
-                        currChar = input[++counter];
-
-                        if (currChar == 'H' || currChar == 'h' || currChar == 'T' || currChar == 't' || currChar == 'A' || currChar == 'a')
-                        {
-                            AddPossibilities(currChar);
-                        }
-                        break;
-                    case ' ':
-                        currChar = input[++counter];
-
-                        if (currChar == 'H' || currChar == 'h' || currChar == 'T' || currChar == 't' || currChar == 'A' || currChar == 'a')
-                        {
-                            AddPossibilities(currChar);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
             return true;
         }
 
