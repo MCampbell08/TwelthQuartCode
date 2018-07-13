@@ -664,7 +664,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\waffl\\.nuget\\packages\\": {},
+    "C:\\Users\\WaffleDefender\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -673,17 +673,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\waffl\\Documents\\SchoolCode\\TwelthQuartCode\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine.csproj",
+      "projectUniqueName": "C:\\TwelthQuartCode\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine.csproj",
       "projectName": "Lab04_NonDeterAndFiniteStateMachine",
-      "projectPath": "C:\\Users\\waffl\\Documents\\SchoolCode\\TwelthQuartCode\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine.csproj",
-      "packagesPath": "C:\\Users\\waffl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\waffl\\Documents\\SchoolCode\\TwelthQuartCode\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine\\obj\\",
+      "projectPath": "C:\\TwelthQuartCode\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine.csproj",
+      "packagesPath": "C:\\Users\\WaffleDefender\\.nuget\\packages\\",
+      "outputPath": "C:\\TwelthQuartCode\\Lab04_NonDeterAndFiniteStateMachine\\Lab04_NonDeterAndFiniteStateMachine\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\waffl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\WaffleDefender\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
