@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab04_NonDeterAndFiniteStateMachine.StateContollers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,9 +15,19 @@ namespace Lab04_NonDeterAndFiniteStateMachine
             Ahoy,
             Aloha,
             HowAreYou,
+            HowDoYou,
+            HowAreYouDoing,
             Thanks,
             NoneFound
         }
+
+        private HiController hiController = new HiController();
+        private HelloController helloController = new HelloController();
+        private HowdyController howdyController = new HowdyController();
+        private HowAreYouContoller howController = new HowAreYouContoller();
+        private ThanksController thanksController = new ThanksController();
+        private AlohaController alohaController = new AlohaController();
+        private AhoyController ahoyController = new AhoyController();
 
         public enum MachineState
         {
@@ -31,7 +42,9 @@ namespace Lab04_NonDeterAndFiniteStateMachine
         private string[] thanksOptions = { "You're welcome", "No, thank you!" };
         private string[] notFoundOptions = { "What great weather!", "Tell me about yourself", "What would you like to do?", "What makes you sad?" };
         private string[] ahoyOptions = { "Ahoy!", "Arrrrrrrr!" };
-        private string[] howYouOptions = { "I'm good, Thanks for asking!", "I'm okay." };
+        private string[] howAreYouOptions = { "I'm good!", "I'm okay." };
+        private string[] howAreYouDoingOptions = { "I'm doing good!", "I'm doing okay." };
+        private string[] howDoOptions = { "I do good!", "I do okay." };
         private string[] inputPossibilities = { "Hi", "Hello", "Howdy", "How are you?", "How are you doing?", "How do you do?", "Aloha", "Ahoy mate", "Thanks", "Thank you" };
 
         private List<string> possibilitiesChecked = new List<string>();
@@ -52,6 +65,10 @@ namespace Lab04_NonDeterAndFiniteStateMachine
                     {
                         Console.WriteLine(alohaOptions[random.Next(0, 2)]);
                     }
+                    else if (inputMessage == InputMessage.Ahoy)
+                    {
+                        Console.WriteLine(ahoyOptions[random.Next(0, 2)]);
+                    }
                     else if (inputMessage == InputMessage.Howdy)
                     {
                         Console.WriteLine(howdyOption);
@@ -70,7 +87,15 @@ namespace Lab04_NonDeterAndFiniteStateMachine
                     }
                     else if (inputMessage == InputMessage.HowAreYou)
                     {
-                        Console.WriteLine(howYouOptions[random.Next(0, 2)]);
+                        Console.WriteLine(howAreYouOptions[random.Next(0, 2)]);
+                    }
+                    else if (inputMessage == InputMessage.HowAreYouDoing)
+                    {
+                        Console.WriteLine(howAreYouDoingOptions[random.Next(0, 2)]);
+                    }
+                    else if (inputMessage == InputMessage.HowDoYou)
+                    {
+                        Console.WriteLine(howDoOptions[random.Next(0, 2)]);
                     }
                     else if (inputMessage == InputMessage.NoneFound)
                     {
@@ -112,19 +137,48 @@ namespace Lab04_NonDeterAndFiniteStateMachine
                             {
                                 if (currChar == 'H' || currChar == 'h')
                                 {
-                                    if (StateHiCheck(currChar, input) || StateHelloCheck(currChar, input) || StateHowdyCheck(currChar, input)
-                                         || StateHowDoCheck(currChar, input)|| StateHowCheck(currChar, input)  || StateHowAreCheck(currChar, input))
+                                    if (hiController.StateHiCheck(currChar, input, counter))
                                     {
-                                        break;
+                                        inputMessage = InputMessage.Hi;
+                                    }
+                                    else if (helloController.StateHelloCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.Hello;
+                                    }
+                                    else if (howdyController.StateHowdyCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.Howdy;
+                                    }
+                                    else if (howController.StateHowDoCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.HowDoYou;
+                                    }
+                                    else if (howController.StateHowCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.HowAreYou;
+                                    }
+                                    else if(howController.StateHowAreCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.HowAreYouDoing;
                                     }
                                 }
                                 else if (currChar == 'T' || currChar == 't')
                                 {
-
+                                    if (thanksController.StateThanksCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.Thanks;
+                                    }
                                 }
                                 else if (currChar == 'A' || currChar == 'a')
                                 {
-
+                                    if (alohaController.StateAlohaCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.Aloha;
+                                    }
+                                    else if (ahoyController.StateAhoyCheck(currChar, input, counter))
+                                    {
+                                        inputMessage = InputMessage.Ahoy;
+                                    }
                                 }
                                 currState = MachineState.BeginningState;
                             }
@@ -148,800 +202,7 @@ namespace Lab04_NonDeterAndFiniteStateMachine
             }
             return true;
         }
-
-        private bool StateHiCheck(char currChar, string input)
-        {
-            int tempCounter = counter;
-            currChar = input[++tempCounter];
-
-            switch (currChar)
-            {
-                case 'i':
-                    inputMessage = InputMessage.Hi;
-                    if (++tempCounter >= input.Length)
-                    {
-                        break;
-                    }
-                    currChar = input[tempCounter];
-                    if (currChar != ' ')
-                    {
-                        inputMessage = InputMessage.NoneFound;
-                        currState = MachineState.BeginningState;
-                        return false;
-                    }
-                    break;
-                default:
-                    return false;
-            }
-            return true;
-        }
-
-        private bool StateHelloCheck(char currChar, string input)
-        {
-            int tempCounter = counter;
-            int duplicateAmount = 1;
-            bool done = false;
-            currChar = input[++tempCounter];
-
-            while (!done)
-            {
-                switch (currChar)
-                {
-                    case 'e':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'l')
-                            {
-                                goto case 'l';
-                            }
-                        }
-                        break;
-                    case 'l':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'l' && duplicateAmount == 1)
-                            {
-                                ++duplicateAmount;
-                                goto case 'l';
-                            }
-                            else if (currChar == 'o' && duplicateAmount == 2)
-                            {
-                                goto case 'o';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'o':
-                        if (++tempCounter >= input.Length)
-                        {
-                            done = true;
-                            inputMessage = InputMessage.Hello;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ' && input[tempCounter - 2] == 'l')
-                            {
-                                done = true;
-                                inputMessage = InputMessage.Hello;
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                        break;
-                    default:
-                        inputMessage = InputMessage.NoneFound;
-                        currState = MachineState.BeginningState;
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        private bool StateHowdyCheck(char currChar, string input)
-        {
-            int tempCounter = counter;
-            bool done = false;
-            currChar = input[++tempCounter];
-
-            while (!done)
-            {
-                switch (currChar)
-                {
-                    case 'o':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'w')
-                            {
-                                goto case 'w';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'd':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'y')
-                            {
-                                goto case 'y';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'w':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'd')
-                            {
-                                goto case 'd';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'y':
-                        if (++tempCounter >= input.Length)
-                        {
-                            done = true;
-                            inputMessage = InputMessage.Howdy;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                done = true;
-                                inputMessage = InputMessage.Howdy;
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                        break;
-                    default:
-                        inputMessage = InputMessage.NoneFound;
-                        currState = MachineState.BeginningState;
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        private bool StateHowDoCheck(char currChar, string input)
-        {
-            int tempCounter = counter;
-            bool done = false;
-            currChar = input[++tempCounter];
-
-            while (!done)
-            {
-                switch (currChar)
-                {
-                    case 'o':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'w')
-                            {
-                                goto case 'w';
-                            }
-                            else if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else if (currChar == 'u')
-                            {
-                                goto case 'u';
-                            }
-                            else if (currChar == '?')
-                            {
-                                goto case '?';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'w':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case ' ':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'd')
-                            {
-                                goto case 'd';
-                            }
-                            else if (currChar == 'y')
-                            {
-                                goto case 'y';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'd':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'o')
-                            {
-                                goto case 'o';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'y':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'o')
-                            {
-                                goto case 'o';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'u':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case '?':
-                        if (++tempCounter >= input.Length)
-                        {
-                            inputMessage = InputMessage.HowAreYou;
-                            done = true;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                inputMessage = InputMessage.HowAreYou;
-                                done = true;
-                                break;
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                        break;
-                    default:
-                        inputMessage = InputMessage.NoneFound;
-                        currState = MachineState.BeginningState;
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        private bool StateHowCheck(char currChar, string input)
-        {
-            int tempCounter = counter;
-            bool done = false;
-            currChar = input[++tempCounter];
-
-            while (!done)
-            {
-                switch (currChar)
-                {
-                    case 'o':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'w')
-                            {
-                                goto case 'w';
-                            }
-                            else if (currChar == 'u')
-                            {
-                                goto case 'u';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'w':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case ' ':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'a')
-                            {
-                                goto case 'a';
-                            }
-                            else if (currChar == 'y')
-                            {
-                                goto case 'y';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'a':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'r')
-                            {
-                                goto case 'r';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'r':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'e')
-                            {
-                                goto case 'e';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'e':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'u':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == '?')
-                            {
-                                goto case '?';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'y':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'o')
-                            {
-                                goto case 'o';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case '?':
-                        if (++tempCounter >= input.Length)
-                        {
-                            inputMessage = InputMessage.HowAreYou;
-                            done = true;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                inputMessage = InputMessage.HowAreYou;
-                                done = true;
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                        break;
-                    default:
-                        inputMessage = InputMessage.NoneFound;
-                        return false;
-                }
-            }
-            return true;
-        }
-
-        private bool StateHowAreCheck(char currChar, string input)
-        {
-
-            int tempCounter = counter;
-            bool done = false;
-            currChar = input[++tempCounter];
-
-            while (!done)
-            {
-                switch (currChar)
-                {
-                    case 'o':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'w')
-                            {
-                                goto case 'w';
-                            }
-                            else if (currChar == 'u')
-                            {
-                                goto case 'u';
-                            }
-                            else if (currChar == 'i')
-                            {
-                                goto case 'i';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'w':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'u':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'i':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'n')
-                            {
-                                goto case 'n';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'n':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'g')
-                            {
-                                goto case 'g';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case ' ':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'a')
-                            {
-                                goto case 'a';
-                            }
-                            else if (currChar == 'y')
-                            {
-                                goto case 'y';
-                            }
-                            else if (currChar == 'd')
-                            {
-                                goto case 'd';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'a':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'r')
-                            {
-                                goto case 'r';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'r':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'e')
-                            {
-                                goto case 'e';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'e':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                goto case ' ';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'y':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'o')
-                            {
-                                goto case 'o';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'd':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == 'o')
-                            {
-                                goto case 'o';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case 'g':
-                        if (++tempCounter >= input.Length)
-                        {
-                            goto default;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == '?')
-                            {
-                                goto case '?';
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                    case '?':
-                        if (++tempCounter >= input.Length)
-                        {
-                            inputMessage = InputMessage.HowAreYou;
-                            done = true;
-                        }
-                        else
-                        {
-                            currChar = input[tempCounter];
-                            if (currChar == ' ')
-                            {
-                                inputMessage = InputMessage.HowAreYou;
-                                done = true;
-                            }
-                            else
-                            {
-                                goto default;
-                            }
-                        }
-                        break;
-                    default:
-                        inputMessage = InputMessage.HowAreYou;
-                        return false;
-                }
-            }
-
-            return true;
-        }
-
+       
         private void AddPossibilities(char currChar)
         {
             if (currChar == 'h' || currChar == 'H')
