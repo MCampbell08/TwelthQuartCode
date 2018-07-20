@@ -664,7 +664,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\waffl\\.nuget\\packages\\": {},
+    "C:\\Users\\WaffleDefender\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -673,17 +673,17 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\waffl\\Documents\\SchoolCode\\TwelthQuartCode\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage.csproj",
+      "projectUniqueName": "C:\\TwelthQuartCode\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage.csproj",
       "projectName": "Lab05_ContextFreeLanguage",
-      "projectPath": "C:\\Users\\waffl\\Documents\\SchoolCode\\TwelthQuartCode\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage.csproj",
-      "packagesPath": "C:\\Users\\waffl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\waffl\\Documents\\SchoolCode\\TwelthQuartCode\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage\\obj\\",
+      "projectPath": "C:\\TwelthQuartCode\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage.csproj",
+      "packagesPath": "C:\\Users\\WaffleDefender\\.nuget\\packages\\",
+      "outputPath": "C:\\TwelthQuartCode\\Lab05_ContextFreeLanguage\\Lab05_ContextFreeLanguage\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\waffl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\WaffleDefender\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
