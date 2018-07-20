@@ -9,7 +9,7 @@ namespace Lab05_ContextFreeLanguage
         private static Stack<Object> stack = new Stack<object>();
         private List<string> acceptableArticles = new List<string> { "a", "the", "an" };
         private List<string> acceptableNouns = new List<string> { "dog", "cat", "squirrel", "girl", "boy" };
-        private List<string> acceptableVerbs = new List<string> { "ran", "bites", "scurries", "sat" };
+        private List<string> acceptableVerbs = new List<string> { "ran", "bites", "scurries", "sat", "chased" };
         private List<string> acceptablePronouns = new List<string> { "he", "she", "him", "her" };
         private List<string> acceptableAdjectives = new List<string> { "happily", "quickly", "good", "bad" };
         private List<string> acceptablePrepostions = new List<string> { "with", "from", "to" };
@@ -24,19 +24,22 @@ namespace Lab05_ContextFreeLanguage
         
         public void Run()
         {
+            bool inputFailed = false;
             while((inputStream = Console.ReadLine().Split(' ')) != new string[] { "quit" })
             {
                 stack.Clear();
                 counter = 0;
+                inputFailed = false;
                 foreach (string word in inputStream)
                 {
-                    if (CanAddToStack(word))
+                    if (CanAddToStack(word) && !inputFailed)
                     {
                         bool done = false;
                         while (!done)
                         {
                             if ((stack.Contains("NounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2)
-                                || (stack.Contains("PronounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2))
+                                || (stack.Contains("PronounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2)
+                                || (stack.Contains("Pronoun") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2))
                             {
                                 PopStackWithAmount(2);
                                 stack.Push("Sentence");
@@ -45,13 +48,14 @@ namespace Lab05_ContextFreeLanguage
                             {
                                 PopStackWithAmount(1);
                                 stack.Push("Article");
+                                done = true;
                             }
                             else if (stack.Contains("dog") || stack.Contains("cat") || stack.Contains("squirrel") || stack.Contains("girl") || stack.Contains("boy"))
                             {
                                 PopStackWithAmount(1);
                                 stack.Push("Noun");
                             }
-                            else if (stack.Contains("ran") || stack.Contains("bites") || stack.Contains("scurries") || stack.Contains("sat"))
+                            else if (stack.Contains("ran") || stack.Contains("bites") || stack.Contains("scurries") || stack.Contains("sat") || stack.Contains("chased"))
                             {
                                 PopStackWithAmount(1);
                                 stack.Push("Verb");
@@ -59,7 +63,13 @@ namespace Lab05_ContextFreeLanguage
                             else if (stack.Contains("with") || stack.Contains("from") || stack.Contains("to"))
                             {
                                 PopStackWithAmount(1);
+                                if ((string)stack.Peek() == "Preposition")
+                                {
+                                    inputFailed = true;
+                                }
                                 stack.Push("Preposition");
+                                done = true;
+
                             }
                             else if (stack.Contains("he") || stack.Contains("she") || stack.Contains("him") || stack.Contains("her"))
                             {
@@ -70,22 +80,50 @@ namespace Lab05_ContextFreeLanguage
                             {
                                 PopStackWithAmount(1);
                                 stack.Push("Adjective");
-                            }
-                            else if (stack.Contains("Article") && stack.Contains("Noun") && stack.Contains("Preposition"))
-                            {
-                                PopStackWithAmount(3);
-                                stack.Push("NounPhrase");
+                                if (counter < inputStream.Length)
+                                {
+                                    done = true;
+                                }
                             }
                             else if (stack.Contains("Article") && stack.Contains("Adjective") && stack.Contains("Noun"))
                             {
-                                if (counter <= inputStream.Length)
+                                if (counter < inputStream.Length)
                                 {
                                     if (inputStream[counter] != "with")
                                     {
                                         PopStackWithAmount(3);
                                         stack.Push("NounPhrase");
                                     }
+                                    else
+                                    {
+                                        done = true;
+                                    }
                                 }
+                                else if (counter == inputStream.Length)
+                                {
+                                    PopStackWithAmount(3);
+                                    stack.Push("NounPhrase");
+                                }
+                            }
+                            else if (stack.Contains("Article") && stack.Contains("Noun") && stack.Contains("Preposition") && (string)stack.Peek() == "NounPhrase")
+                            {
+                                PopStackWithAmount(4);
+                                stack.Push("NounPhrase");
+                            }
+                            else if (stack.Contains("Verb") && stack.Contains("Adjective") && stack.Contains("Preposition") && (string)stack.Peek() == "NounPhrase")
+                            {
+                                PopStackWithAmount(4);
+                                stack.Push("VerbPhrase");
+                            }
+                            else if (stack.Contains("Verb") && stack.Contains("Preposition") && (string)stack.Peek() == "NounPhrase")
+                            {
+                                PopStackWithAmount(3);
+                                stack.Push("VerbPhrase");
+                            }
+                            else if (stack.Contains("Verb") && stack.Contains("Preposition") && (string)stack.Peek() == "Pronoun")
+                            {
+                                PopStackWithAmount(3);
+                                stack.Push("VerbPhrase");
                             }
                             else if (stack.Contains("Article") && stack.Contains("Noun"))
                             {
@@ -112,6 +150,11 @@ namespace Lab05_ContextFreeLanguage
                                 PopStackWithAmount(4);
                                 stack.Push("NounPhrase");
                             }
+                            else if (stack.Contains("Verb") && stack.Contains("Adjective") && (string)stack.Peek() == "NounPhrase")
+                            {
+                                PopStackWithAmount(3);
+                                stack.Push("VerbPhrase");
+                            }
                             else if (stack.Contains("Verb") && stack.Contains("Adjective"))
                             {
                                 PopStackWithAmount(2);
@@ -126,6 +169,26 @@ namespace Lab05_ContextFreeLanguage
                             {
                                 PopStackWithAmount(2);
                                 stack.Push("VerbPhrase");
+                            }
+                            else if (stack.Contains("Verb") && (string)stack.Peek() == "NounPhrase")
+                            {
+                                if (counter >= inputStream.Length)
+                                {
+                                    PopStackWithAmount(2);
+                                    stack.Push("VerbPhrase");
+                                }
+                                else
+                                {
+                                    if (inputStream[counter] != "with")
+                                    {
+                                        PopStackWithAmount(2);
+                                        stack.Push("VerbPhrase");
+                                    }
+                                    else
+                                    {
+                                        done = true;
+                                    }
+                                }
                             }
                             else if (stack.Contains("Verb"))
                             {
@@ -143,26 +206,10 @@ namespace Lab05_ContextFreeLanguage
                                         PopStackWithAmount(1);
                                         stack.Push("VerbPhrase");
                                     }
-                                    else if (inputStream[counter] == "quickly" || inputStream[counter] == "happily")
+                                    else
                                     {
                                         done = true;
                                     }
-                                    else if (inputStream[counter] == "with")
-                                    {
-                                        done = true;
-                                    }
-                                }
-                            }
-                            else if (stack.Contains("Verb") && stack.Contains("NounPhrase"))
-                            {
-                                if (inputStream[counter] != "with")
-                                {
-                                    PopStackWithAmount(2);
-                                    stack.Push("VerbPhrase");
-                                }
-                                else
-                                {
-                                    done = true;
                                 }
                             }
                             else if (stack.Contains("Preposition") && stack.Contains("Pronoun"))
@@ -176,12 +223,8 @@ namespace Lab05_ContextFreeLanguage
                             }
                         }
                     }
-                    else
-                    {
-                        PrintMessage();
-                    }
                 }
-                if ((string)stack.Peek() != "Sentence")
+                if (!stack.Contains("Sentence"))
                 {
                     PrintMessage();
                 }

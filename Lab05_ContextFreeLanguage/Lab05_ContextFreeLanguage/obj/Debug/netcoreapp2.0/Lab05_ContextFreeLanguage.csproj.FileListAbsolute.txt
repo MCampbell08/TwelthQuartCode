@@ -3,7 +3,6 @@ C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\bin\Debug
 C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\bin\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.runtimeconfig.dev.json
 C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\bin\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.dll
 C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\bin\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.pdb
-C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.csprojResolveAssemblyReference.cache
 C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.csproj.CoreCompileInputs.cache
 C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.AssemblyInfoInputs.cache
 C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.AssemblyInfo.cs
@@ -20,3 +19,4 @@ C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab05_ContextFreeLanguage\La
 C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.AssemblyInfo.cs
 C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.dll
 C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.pdb
+C:\TwelthQuartCode\Lab05_ContextFreeLanguage\Lab05_ContextFreeLanguage\obj\Debug\netcoreapp2.0\Lab05_ContextFreeLanguage.csprojAssemblyReference.cache
