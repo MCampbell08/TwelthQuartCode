@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab05_ContextFreeLanguage.DataStructure;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,6 +22,7 @@ namespace Lab05_ContextFreeLanguage
         private string[] inputStream;
         private int counter;
         private TreeSystem system = new TreeSystem();
+        private List<Node> nodeCollection = new List<Node>();
         
         public void Run()
         {
@@ -37,12 +39,13 @@ namespace Lab05_ContextFreeLanguage
                         bool done = false;
                         while (!done)
                         {
-                            if ((stack.Contains("NounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2)
-                                || (stack.Contains("PronounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2)
-                                || (stack.Contains("Pronoun") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2))
+                            if (stack.Contains("NounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2
+                                || (stack.Contains("Pronoun") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2)
+                                || (stack.Contains("PronounPhrase") && stack.Contains("VerbPhrase") && counter >= inputStream.Length && stack.Count == 2))
                             {
                                 PopStackWithAmount(2);
                                 stack.Push("Sentence");
+                                nodeCollection.Add(new Node() { Parent = null, Nodes = null, Value = "Sentence" });
                             }
                             else if (stack.Contains("a") || stack.Contains("the") || stack.Contains("an"))
                             {
@@ -231,10 +234,14 @@ namespace Lab05_ContextFreeLanguage
                 else
                 {
                     Console.WriteLine("Pass");
+                    SetTree();
                 }
             }
         }
+        private void SetTree()
+        {
 
+        }
         private bool CanAddToStack(string input)
         {
             if (acceptableArticles.Contains(input))
@@ -292,7 +299,7 @@ namespace Lab05_ContextFreeLanguage
         {
             for (int i = 0; i < amount; i++)
             {
-                stack.Pop();
+                nodeCollection.Add(new Node() { Parent = null, Nodes = null, Value = stack.Pop() });
             }
         }
     }
