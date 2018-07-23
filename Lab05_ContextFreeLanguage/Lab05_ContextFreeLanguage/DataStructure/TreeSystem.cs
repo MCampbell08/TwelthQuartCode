@@ -1,4 +1,6 @@
 ﻿using Lab05_ContextFreeLanguage.DataStructure;
+using System;
+using System.Collections.Generic;
 
 namespace Lab05_ContextFreeLanguage
 {
@@ -13,5 +15,31 @@ namespace Lab05_ContextFreeLanguage
             RootNode = rootNode;
         }
         public Node RootNode { get; set; }
+
+        public List<Node> TreeSystemToList()
+        {
+            List<Node> list = new List<Node>();
+            return ArrayLooper(list, RootNode);
+        }
+        private List<Node> ArrayLooper(List<Node> list, Node node)
+        {
+            int counter = 0;
+            if (node != null)
+            {
+                if (node.Value != null)
+                {
+                    counter++;
+                    list.Add(node);
+                }
+                if (node.Nodes != null)
+                {
+                    foreach (Node child in node.Nodes)
+                    {
+                        ArrayLooper(list, child);
+                    }
+                }
+            }
+            return list;
+        }
     }
 }

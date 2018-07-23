@@ -203,7 +203,7 @@ namespace Lab05_ContextFreeLanguage
                                     n.Parent = parentNode;
                                 }
                                 nodeCollection.Add(parentNode);
-                                nodeCollection.RemoveAll(x => (string)x.Value == "Verb" || (string)x.Value == "Preposition" || (string)x.Value == "Pronoun"));
+                                nodeCollection.RemoveAll(x => (string)x.Value == "Verb" || (string)x.Value == "Preposition" || (string)x.Value == "Pronoun");
                             }
                             else if (stack.Contains("Article") && stack.Contains("Noun"))
                             {
@@ -311,7 +311,8 @@ namespace Lab05_ContextFreeLanguage
                             }
                             else if (stack.Contains("Verb") && (string)stack.Peek() == "NounPhrase")
                             {
-                                var list = nodeCollection.FindAll(x => (string)x.Value == "Verb" || (string)x.Value == "NounPhrase");
+                                var list = nodeCollection.FindAll(x => (string)x.Value == "Verb");
+                                list.Add(nodeCollection.FindLast(x => (string)x.Value == "NounPhrase"));
                                 var parentNode = new Node() { Nodes = list };
                                 if (counter >= inputStream.Length)
                                 {
@@ -323,7 +324,8 @@ namespace Lab05_ContextFreeLanguage
                                         n.Parent = parentNode;
                                     }
                                     nodeCollection.Add(parentNode);
-                                    nodeCollection.RemoveAll(x => (string)x.Value == "Verb" || (string)x.Value == "NounPhrase");
+                                    nodeCollection.RemoveAll(x => (string)x.Value == "Verb");
+                                    nodeCollection.RemoveAt(nodeCollection.Count - 1);
                                 }
                                 else
                                 {
@@ -406,14 +408,23 @@ namespace Lab05_ContextFreeLanguage
                 }
                 if (!stack.Contains("Sentence"))
                 {
-                    PrintMessage();
+                    PrintFailure();
                 }
                 else
                 {
                     system.RootNode = nodeCollection[nodeCollection.Count - 1];
-                    Console.WriteLine("Pass");
+                    PrintSuccess();
                 }
             }
+        }
+        private void PrintSuccess()
+        {
+            ResponseTree tree = new ResponseTree(system);
+            tree.PrintResponse();
+        }
+        private void PrintFailure()
+        {
+            Console.WriteLine("I'm not sure I follow you");
         }
         private bool CanAddToStack(string input)
         {
@@ -463,10 +474,6 @@ namespace Lab05_ContextFreeLanguage
             }
             counter++;
             return true;
-        }
-        private void PrintMessage()
-        {
-            Console.WriteLine("I'm not sure I follow you");
         }
         private void PopStackWithAmount(int amount)
         {
