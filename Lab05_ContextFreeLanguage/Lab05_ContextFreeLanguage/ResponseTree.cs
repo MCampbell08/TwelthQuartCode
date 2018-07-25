@@ -9,6 +9,22 @@ namespace Lab05_ContextFreeLanguage
     {
         private readonly TreeSystem system;
 
+        private string[] nounResponses = new string[]
+        {
+            "What else did the [NOUN] do?",
+            "Nice! Do you love [NOUN]s?"
+        };
+        private string[] nounAdjectiveResponses = new string[]
+        {
+            "Is that so? [ADJECTIVE]? With the [NOUN]? No way..."
+        };
+        private string[] pronounResponses = new string[]
+        {
+            "What else did [PRONOUN] do?",
+            "How is [PRONOUN] doing?"
+        };
+
+
         public ResponseTree(TreeSystem temp)
         {
             system = temp;
@@ -19,20 +35,65 @@ namespace Lab05_ContextFreeLanguage
         }
         private string OutputSelected()
         {
-            List<Node> nodes = system.TreeSystemToList();
-
-            if (nodes.Contains(nodes.Find(x => x.Value.Equals("Noun"))) && nodes.Contains(nodes.Find(x => x.Value.Equals("Adjective"))))
+            List<Node> nodeCollection = system.TreeSystemToList();
+            List<Node> adjectives, nouns, pronouns;
+            Random random = new Random();
+            string output = "";
+            string[] temp = null;
+            
+            if (nodeCollection.Contains(nodeCollection.Find(x => x.Value.Equals("Noun"))) && nodeCollection.Contains(nodeCollection.Find(x => x.Value.Equals("Adjective"))))
             {
-                List<Node> adjectives = nodes.FindAll(x => x.Value.Equals("Adjective"));
-                if ()
+                adjectives = nodeCollection.FindAll(x => x.Value.Equals("Adjective"));
+                nouns = nodeCollection.FindAll(x => x.Value.Equals("Noun"));
 
+                output = nounAdjectiveResponses[0];
+                temp = output.Split(' ');
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i].Equals("[NOUN]?"))
+                    {
+                        temp[i] = (string)nouns[random.Next(0, nouns.Count)].Nodes[0].Value + "?";
+                    }
+                    else if (temp[i].Equals("[ADJECTIVE]?"))
+                    {
+                        temp[i] = (string)adjectives[random.Next(0, adjectives.Count)].Nodes[0].Value + "?";
+                    }
                 }
             }
-            else if ()
+            else if (nodeCollection.Contains(nodeCollection.Find(x => x.Value.Equals("Pronoun"))))
             {
+                pronouns = nodeCollection.FindAll(x => x.Value.Equals("Pronoun"));
 
+                output = pronounResponses[random.Next(0, pronounResponses.Length - 1)];
+                temp = output.Split(' ');
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i].Equals("[PRONOUN]"))
+                    {
+                        temp[i] = (string)pronouns[random.Next(0, pronouns.Count)].Nodes[0].Value;
+                    }
+                }
             }
-            return null;
+            else if (nodeCollection.Contains(nodeCollection.Find(x => x.Value.Equals("Noun"))))
+            {
+                nouns = nodeCollection.FindAll(x => x.Value.Equals("Noun"));
+                output = nounResponses[random.Next(0, pronounResponses.Length - 1)];
+
+                temp = output.Split(' ');
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i].Equals("[NOUN]"))
+                    {
+                        temp[i] = (string)nouns[random.Next(0, nouns.Count)].Nodes[0].Value;
+                    }
+                }
+            }
+            output = "";
+            for(int i = 0; i < temp.Length; i++)
+            {
+                output += (i == temp.Length - 1) ? temp[i] : temp[i] + " ";
+            }
+            return output;
         }
     }
 }

@@ -1,0 +1,7 @@
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\bin\Debug\Lab06_TuringMachine.exe.config
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\bin\Debug\Lab06_TuringMachine.exe
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\bin\Debug\Lab06_TuringMachine.pdb
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\obj\Debug\Lab06_TuringMachine.csprojResolveAssemblyReference.cache
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\obj\Debug\Lab06_TuringMachine.csproj.CoreCompileInputs.cache
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\obj\Debug\Lab06_TuringMachine.exe
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\Lab06_TuringMachine\Lab06_TuringMachine\obj\Debug\Lab06_TuringMachine.pdb
