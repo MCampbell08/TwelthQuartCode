@@ -21,8 +21,9 @@ namespace Lab05_ContextFreeLanguage
 
         private string[] inputStream;
         private int counter;
-        private TreeSystem system = new TreeSystem();
+        private TreeSystem systemTree = new TreeSystem();
         private List<Node> nodeCollection = new List<Node>();
+        private ResponseTree tree = null;
         
         public void Run()
         {
@@ -412,19 +413,29 @@ namespace Lab05_ContextFreeLanguage
                 }
                 else
                 {
-                    system.RootNode = nodeCollection[nodeCollection.Count - 1];
+                    systemTree.RootNode = nodeCollection[nodeCollection.Count - 1];
                     PrintSuccess();
                 }
             }
         }
         private void PrintSuccess()
         {
-            ResponseTree tree = new ResponseTree(system);
-            tree.PrintResponse();
+            if (tree == null) {
+                tree = new ResponseTree(systemTree);
+            }
+            else
+            {
+                tree.AddNewTree(new TreeSystem(systemTree));
+            }
+            tree.PrintResponse(true);
         }
         private void PrintFailure()
         {
-            Console.WriteLine("I'm not sure I follow you");
+            if (tree == null)
+            {
+                tree = new ResponseTree(null);
+            }
+            tree.PrintResponse(false);
         }
         private bool CanAddToStack(string input)
         {

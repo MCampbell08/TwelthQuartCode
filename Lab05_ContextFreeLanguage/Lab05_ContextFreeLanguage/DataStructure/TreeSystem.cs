@@ -10,10 +10,18 @@ namespace Lab05_ContextFreeLanguage
         {
             RootNode = new Node();
         }
+        public TreeSystem(TreeSystem tree)
+        {
+            RootNode = new Node();
+            RootNode.Nodes = tree.RootNode.Nodes;
+            RootNode.Value = tree.RootNode.Value;
+            RootNode.Parent = tree.RootNode.Parent;
+        }
         public TreeSystem(Node rootNode)
         {
             RootNode = rootNode;
         }
+        public string ResponseMessage { get; set; }
         public Node RootNode { get; set; }
 
         public List<Node> TreeSystemToList()

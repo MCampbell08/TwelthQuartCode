@@ -22,11 +22,11 @@ namespace Lab06_TuringMachine
             char head = tape[counter];
             bool isTransitioning = false;
 
-            foreach (char c in tape)
-            {
-                Console.Write(c);
-            }
-            Console.WriteLine();
+            //foreach (char c in tape)
+            //{
+            //    Console.Write(c);
+            //}
+            //Console.WriteLine();
             while (!done)
             {
                 switch (head)
@@ -78,11 +78,11 @@ namespace Lab06_TuringMachine
                             }
                             else if (tape[counter - 1] == '0')
                             {
-                                foreach (char c in tape)
-                                {
-                                    Console.Write(c);
-                                }
-                                Console.WriteLine();
+                                //foreach (char c in tape)
+                                //{
+                                //    Console.Write(c);
+                                //}
+                                //Console.WriteLine();
                                 isTransitioning = false;
                                 goingRight = true;
                             }
@@ -144,8 +144,9 @@ namespace Lab06_TuringMachine
                 int amount = 0;
                 foreach (char c in tape)
                 {
-                    Console.Write(c);
-                    if (c == '1') {
+                    //Console.Write(c);
+                    if (c == '1')
+                    {
                         amount++;
                     }
                 }
