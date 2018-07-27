@@ -82,15 +82,97 @@ namespace AnsweringQuestions
         private void BuildTour()
         {
             bool done = false;
+            bool validEntry = true;
+            int distance = 0;
+            string currPos = "";
             while (!done)
             {
+                distance = 0;
                 string[] input = ParseTourRequest();
-                //Create other Routes based off of information given to you
-                
-                
+                currPos = input[0];
 
-                //Go through every route in the stack and see if you can make the tour. Failing would mean halting.
+                if (ValidLoc(currPos)) {
+
+                    for(int i = 1; i < input.Length; i++)
+                    {
+                        if (!ValidLoc(input[1]))
+                        {
+                            validEntry = false;
+                        }
+                        else
+                        {
+                            distance += GetDistanceBetweenLocs(currPos, input[i]);
+                        }
+                    }
+                }
             }
+        }
+
+        private int GetDistanceBetweenLocs(string start, string end)
+        {
+            int num = 0;
+            List<Route> routesChecked = new List<Route>();
+
+            foreach (Route r in stack)
+            {
+                if (start == r.StartingPos)
+                {
+                    if (r.EndingPos != end)
+                    {
+                        routesChecked.Add(r);
+                        num = DistanceAccumulation(routesChecked, end);
+                    }
+                    else
+                    {
+                        return Int32.Parse(r.Distance.Split("KM")[0]);
+                    }
+                }
+                else if (end == r.StartingPos)
+                {
+
+                }
+            }
+
+            return num;
+        }
+
+        private int DistanceAccumulation(List<Route> routesChecked, string end)
+        {
+            int num = 0;
+
+            foreach (Route r in stack)
+            {
+                if (!routesChecked.Contains(r))
+                {
+                    if (r.EndingPos == end)
+                    {
+                        if (r.StartingPos == routesChecked[routesChecked.Count - 1].EndingPos)
+                        {
+                            num = Int32.Parse(r.Distance.Split("KM")[0]);
+                        }
+                        else
+                        {
+                            routesChecked.Add(r);
+                            num += DistanceAccumulation(routesChecked, end);
+                        }
+                    }
+                }
+            }
+
+            return num;
+        }
+
+        private bool ValidLoc(string loc)
+        {
+            foreach (Route r in stack)
+            {
+                if (r.StartingPos.Equals(loc) || r.EndingPos.Equals(loc))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private string[] ParseTourRequest()

@@ -9,3 +9,14 @@ C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0
 C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.AssemblyInfo.cs
 C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.dll
 C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.pdb
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.deps.json
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.runtimeconfig.json
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.runtimeconfig.dev.json
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.dll
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.pdb
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.csprojResolveAssemblyReference.cache
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.csproj.CoreCompileInputs.cache
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.AssemblyInfoInputs.cache
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.AssemblyInfo.cs
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.dll
+C:\Users\waffl\Documents\SchoolCode\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.pdb
