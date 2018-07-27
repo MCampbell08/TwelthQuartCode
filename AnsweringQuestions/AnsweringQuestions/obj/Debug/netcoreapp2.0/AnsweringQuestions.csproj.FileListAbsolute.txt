@@ -1,0 +1,11 @@
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.deps.json
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.runtimeconfig.json
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.runtimeconfig.dev.json
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.dll
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\bin\Debug\netcoreapp2.0\AnsweringQuestions.pdb
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.csprojAssemblyReference.cache
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.csproj.CoreCompileInputs.cache
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.AssemblyInfoInputs.cache
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.AssemblyInfo.cs
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.dll
+C:\TwelthQuartCode\AnsweringQuestions\AnsweringQuestions\obj\Debug\netcoreapp2.0\AnsweringQuestions.pdb
